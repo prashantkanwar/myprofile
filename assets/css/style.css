@@ -1255,3 +1255,38 @@ section .container {
     transition: transform .15s; flex-shrink: 0;
   }
   #pk-send-btn:hover { transform: scale(1.08); }
+
+  /* Chat Window hidden by default */
+#pk-chat-window {
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 300px;
+    background: #1a1a1a;
+    border: 1px solid #12d640;
+    border-radius: 10px;
+    z-index: 1000;
+}
+
+#pk-chat-window.pk-open {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Typing Dots Animation */
+.pk-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #12d640;
+    border-radius: 50%;
+    margin-right: 3px;
+    animation: pk-blink 1.4s infinite both;
+}
+
+@keyframes pk-blink {
+    0% { opacity: .2; }
+    20% { opacity: 1; }
+    100% { opacity: .2; }
+}

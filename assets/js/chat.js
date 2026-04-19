@@ -58,7 +58,7 @@ RULES:
 
   window.pkChip = function (el) { pkSend(el.textContent); };
 
-  window.pkSend = function (override) {
+ /* window.pkSend = function (override) {
     var input = document.getElementById('pk-user-input');
     var text = (override || input.value).trim();
     if (!text) return;
@@ -94,7 +94,41 @@ RULES:
       pkRemoveTyping();
       pkAppendBot("Oops! Something went wrong. Please try again.");
     });
-  };
+  }; */
+
+  window.pkSend = function (override) {
+    var input = document.getElementById('pk-user-input');
+    var text = (override || input.value).trim();
+    if (!text) return;
+
+    input.value = '';
+    pkAppendUser(text);
+    pkShowTyping();
+
+    // Simulate a delay so it feels like the AI is "thinking"
+    setTimeout(function() {
+        pkRemoveTyping();
+        var lowerText = text.toLowerCase();
+        var reply = "";
+
+        // Simple Keyword Logic
+        if (lowerText.includes("project")) {
+            reply = "Prashant has worked on several projects, including 'JobHaru' (Angular/.NET) and 'Textutils' (React). Which one would you like to hear about?";
+        } else if (lowerText.includes("skill") || lowerText.includes("tech")) {
+            reply = "He is proficient in .NET Core, C#, Java, Python, and SQL. He's also currently focusing on Azure Cloud!";
+        } else if (lowerText.includes("line") || lowerText.includes("contact") || lowerText.includes("connect")) {
+            pkAppendBot("I'd be happy to help you connect with Prashant on LINE:");
+            pkAppendLineCard();
+            return; // Exit here as the card is handled separately
+        } else if (lowerText.includes("education") || lowerText.includes("study")) {
+            reply = "Prashant earned his Master's in IT from KCGI in Kyoto and his Bachelor's in CSIT from Tribhuvan University.";
+        } else {
+            reply = "That's a great question! I'm currently in 'offline mode,' but you can reach Prashant directly at prashant.kanwar2015@gmail.com.";
+        }
+
+        pkAppendBot(reply);
+    }, 1000); 
+};
 
   function pkAppendBot(text) {
     var msgs = document.getElementById('pk-messages');
