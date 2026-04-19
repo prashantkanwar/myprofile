@@ -550,7 +550,35 @@
   </section>
 
   <!-- ======= End Contact Section ======= -->
+<!--Chatbot Toggle Button -->
+<button id="pk-chat-toggle" onclick="pkToggle()" title="Chat with Prashant's Assistant">💬</button>
 
+<!-- Chat Window -->
+<div id="pk-chat-window">
+  <div id="pk-chat-header">
+    <div class="pk-avatar">🤵</div>
+    <div>
+      <h3>Prashant's Assistant</h3>
+      <p>Ask me anything about Prashant!</p>
+    </div>
+    <button id="pk-close-btn" onclick="pkToggle()">✕</button>
+  </div>
+
+  <div id="pk-messages"></div>
+
+  <div id="pk-suggestions">
+    <button class="pk-chip" onclick="pkChip(this)">About Prashant</button>
+    <button class="pk-chip" onclick="pkChip(this)">Skills</button>
+    <button class="pk-chip" onclick="pkChip(this)">Projects</button>
+    <button class="pk-chip" onclick="pkChip(this)">Connect on LINE</button>
+  </div>
+
+  <div id="pk-input-area">
+    <input id="pk-user-input" type="text" placeholder="Type a message…"
+           onkeydown="if(event.key==='Enter')pkSend()" />
+    <button id="pk-send-btn" onclick="pkSend()">➤</button>
+  </div>
+</div>
 
 
   <!-- Vendor JS Files -->
@@ -565,7 +593,7 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/venobox/venobox.min.js"></script>
   <script src="assets/vendor/typed.js/typed.min.js"></script>
-
+  
   <script type="text/javascript">
     var typed = new Typed('.typing', {
       strings: ["a Student", "an Engineer", "a Coder"],
@@ -580,6 +608,7 @@
   <!-- Template Main JS File -->
 
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/chat.js"></script>
 
 </body>
 
